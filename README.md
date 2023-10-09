@@ -1,5 +1,5 @@
 # Timelines
-Short description and motivation.
+I use this `Ephemeral` pattern frequently across projects to have a simple pattern for tracking the lifecycle of a record, whether it is currently active/ended/draft, and soft-deleting records to keep an audit trail.
 
 ## Usage
 For an ActiveRecord model that has `started_at` and `ended_at` columns (datetime), include `Ephemeral` to give it ephemeral behavior.
