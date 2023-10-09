@@ -1,3 +1,3 @@
-module Timeline
+module Timelines
   VERSION = "0.1.0"
 end

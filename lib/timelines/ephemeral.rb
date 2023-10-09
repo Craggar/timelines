@@ -1,6 +1,6 @@
 require "active_support/concern"
 
-module Timeline
+module Timelines
   module Ephemeral
     extend ActiveSupport::Concern
 
