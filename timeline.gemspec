@@ -8,7 +8,6 @@ Gem::Specification.new do |spec|
   spec.homepage    = "https://github.com/Craggar/timeline"
   spec.summary     = "Library for managing historical records."
   spec.description = "Library for managing historical records."
-  spec.require_paths = ["lib"]
 
   spec.metadata["homepage_uri"] = spec.homepage
   spec.metadata["source_code_uri"] = "https://github.com/Craggar/timeline"
