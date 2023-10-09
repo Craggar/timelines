@@ -1,8 +1,13 @@
 # Timelines
 
+## 0.1.3 (2023-10-09)
+### Changed
+- Updated the required rails version to "~> 7.1.0"
+
 ## 0.1.2 (2023-10-09)
 ### Changed
 - Updated the required rails version to >= 7
+
 ## 0.1.1 (2023-10-09)
 ### Changed
 - Updated the required rails version to "`~> 7.0.0`"
