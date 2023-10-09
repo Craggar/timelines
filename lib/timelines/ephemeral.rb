@@ -11,7 +11,6 @@ module Timelines
       scope :ended, -> { where.not(ended_at: nil) }
       scope :deleted, -> { ended }
       scope :not_deleted, -> { where(ended_at: nil) }
-      attribute :started_at, default: -> { Time.current }
 
       def active?
         started? && !ended?
