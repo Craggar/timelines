@@ -1,17 +1,17 @@
 require_relative "lib/timelines/version"
 
 Gem::Specification.new do |spec|
-  spec.name        = "timelines"
-  spec.version     = Timelines::VERSION
-  spec.authors     = ["Craig Gilchrist"]
-  spec.email       = ["craig.a.gilchrist@gmail.com"]
-  spec.homepage    = "https://github.com/Craggar/timelines"
-  spec.summary     = "Library for managing historical records."
+  spec.name = "timelines"
+  spec.version = Timelines::VERSION
+  spec.authors = ["Craig Gilchrist"]
+  spec.email = ["craig.a.gilchrist@gmail.com"]
+  spec.homepage = "https://github.com/Craggar/timelines"
+  spec.summary = "Library for managing historical records."
   spec.description = <<-EOF
     Provides an Ephemeral module that can be included in any ActiveRecord model to
     provide a simple way to track active/historical/past records.
   EOF
-  spec.license     = "MIT"
+  spec.license = "MIT"
 
   spec.metadata["homepage_uri"] = spec.homepage
   spec.metadata["source_code_uri"] = "https://github.com/Craggar/timelines"
