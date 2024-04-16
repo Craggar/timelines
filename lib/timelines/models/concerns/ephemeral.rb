@@ -7,7 +7,7 @@ module Timelines
     included do
       scope :draft, -> { where(started_at: nil) }
       scope :active, -> { where(ended_at: nil, started_at: [..Time.current]) }
-      scope :active_at, ->(date) { where("started_at <= ? and ended_at IS ? OR ended_at >= ?", date, nil, date) }
+      scope :active_at, ->(date) { where("started_at <= ? AND (ended_at IS ? OR ended_at >= ?)", date, nil, date) }
       scope :with_deleted, -> { unscope(where: :ended_at) }
       scope :ended, -> { where.not(ended_at: nil) }
       scope :deleted, -> { ended }
@@ -18,7 +18,7 @@ module Timelines
       end
 
       def active_at?(date)
-        !!self.class.active_at(date).where(id: self.id)
+        self.class.active_at(date).where(id: self.id).exists?
       end
 
       def start!
