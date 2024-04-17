@@ -18,7 +18,7 @@ module Timelines
       end
 
       def active_at?(date)
-        self.class.active_at(date).where(id: self.id).exists?
+        self.class.active_at(date).where(id: id).exists?
       end
 
       def start!
