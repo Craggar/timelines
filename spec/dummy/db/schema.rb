@@ -13,6 +13,7 @@
 ActiveRecord::Schema[7.1].define(version: 2024_04_16_124254) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "pgcrypto"
 
   create_table "groups", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name"
