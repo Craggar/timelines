@@ -13,6 +13,9 @@ This gives you the following Instance methods:
 # Returns a boolean indicating whether the record is currently active
 .active?
 
+# Returns a boolean indicating whether the record was active at a given date
+.active_at?(date)
+
 # Sets the record's `started_at` to the current time to indicate that it has started
 .start!
 
@@ -44,6 +47,14 @@ Add this line to your application's Gemfile:
 ```ruby
 gem "timelines"
 ```
+
+## Migrations
+Run this command to create a `timelines_events` table in your project:
+```ruby
+bin/rails generate timelines:install
+```
+
+Then you can call [whatever method] to get events attached to the record.
 
 ## Contributing
 Pull requests/issues are welcome on GitHub
