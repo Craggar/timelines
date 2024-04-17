@@ -1,6 +1,7 @@
 require "timelines/version"
-require "timelines/railtie"
-require "timelines/ephemeral"
+require "timelines/models/concerns/ephemeral"
+require "timelines/models/concerns/has_events"
+require "timelines/models/event"
 
 module Timelines
 end
