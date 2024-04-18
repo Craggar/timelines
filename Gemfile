@@ -28,6 +28,9 @@ group :test do
   # SimpleCov to check code coverage
   gem "simplecov", require: false
 
+  # standardrb for code style
+  gem "standardrb"
+
   # Use tzinfo-data for timezone data
   gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 end
