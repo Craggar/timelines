@@ -1,5 +1,9 @@
 # Timelines
 
+## 0.3.3 (2024-05-27)
+### Changed
+- Added audit_trail instance method
+
 ## 0.2.3 (2024-04-01)
 ### Changed
 - Added active_at scope and active_at? instance method to Ephemeral

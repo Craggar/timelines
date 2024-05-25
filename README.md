@@ -10,6 +10,12 @@ include Timelines::Ephemeral
 
 This gives you the following Instance methods:
 ```ruby
+# Returns an AuditTrail object containing the resource and any associated events, in chronological order
+.audit_trail
+
+# Returns an AuditTrail object containing the resource and any associated events, in reverse order
+.audit_trail(reverse: true)
+
 # Returns a boolean indicating whether the record is currently active
 .active?
 
