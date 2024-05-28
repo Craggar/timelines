@@ -1,6 +1,6 @@
 # Timelines
 
-## 0.3.3 (2024-05-27)
+## 0.3.0 (2024-05-27)
 ### Changed
 - Added audit_trail instance method
 
