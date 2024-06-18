@@ -143,6 +143,25 @@ RSpec.shared_examples "it is historical through Timelines::Ephemeral" do
     end
   end
 
+  describe "destroy!" do
+    let!(:instance) { create(factory_name) }
+
+    it "doesn't delete the record" do
+      expect { instance.destroy! }.not_to change { described_class.unscoped.count }
+    end
+
+    it "sets the deleted at field" do
+      freeze_time do
+        expect { instance.destroy! }.to change { instance.ended_at }.from(nil).to(Time.current)
+      end
+    end
+
+    it "raises an error if the record can't be destroyed" do
+      allow_any_instance_of(described_class).to receive(:destroy).and_return(false)
+      expect { instance.destroy! }.to raise_error(ActiveRecord::RecordNotDestroyed)
+    end
+  end
+
   describe "destroy_all" do
     let(:record_count) { 5 }
 
