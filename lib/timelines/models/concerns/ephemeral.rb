@@ -37,7 +37,6 @@ module Timelines
         result = ActiveRecord::Base.transaction do
           run_callbacks(:destroy) do
             update(ended_at: Time.current)
-            destroy_dependent_associations
           end
         end
 
@@ -58,33 +57,6 @@ module Timelines
 
       def destroy!
         end!
-      end
-
-      def self.dependent_associations
-        reflect_on_all_associations.select do |reflection|
-          reflection.options[:dependent].present?
-        end
-      end
-
-      private
-
-      def destroy_dependent_associations
-        self.class.dependent_associations.each do |reflection|
-          method = if reflection.options[:dependent] == :destroy
-            if reflection.collection?
-              :destroy_all
-            else
-              :destroy
-            end
-          elsif reflection.options[:dependent] == :delete_all
-            if reflection.collection?
-              :delete_all
-            else
-              :delete
-            end
-          end
-          send(reflection.name)&.send(method)
-        end
       end
     end
   end

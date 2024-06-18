@@ -156,9 +156,9 @@ RSpec.shared_examples "it is historical through Timelines::Ephemeral" do
       end
     end
 
-    it "raises an error if the record can't be destroyed" do
-      allow_any_instance_of(described_class).to receive(:destroy).and_return(false)
-      expect { instance.destroy! }.to raise_error(ActiveRecord::RecordNotDestroyed)
+    it "returns if the record can't be destroyed" do
+      allow_any_instance_of(described_class).to receive(:end!).and_return(false)
+      expect(instance.destroy!).to eq(false)
     end
   end
 
