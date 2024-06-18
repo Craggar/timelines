@@ -1,5 +1,9 @@
 # Timelines
 
+## 0.3.1 (2024-06-17)
+### Changed
+- Modified the `destroy` method to run callbacks, remove associations, etc.
+
 ## 0.3.0 (2024-05-27)
 ### Changed
 - Added audit_trail instance method

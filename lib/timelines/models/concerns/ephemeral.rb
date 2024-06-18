@@ -32,7 +32,15 @@ module Timelines
       end
 
       def end!
-        destroy
+        return self if ended_at.present?
+
+        result = ActiveRecord::Base.transaction do
+          run_callbacks(:destroy) do
+            update(ended_at: Time.current)
+          end
+        end
+
+        result ? self : false
       end
 
       def ended?
@@ -44,13 +52,11 @@ module Timelines
       end
 
       def destroy
-        return if ended_at.present?
-
-        update(ended_at: Time.current)
+        end!
       end
 
-      def self.destroy_all
-        where(ended_at: nil).update_all(ended_at: Time.current)
+      def destroy!
+        end!
       end
     end
   end
