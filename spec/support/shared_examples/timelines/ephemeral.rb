@@ -3,6 +3,62 @@
 RSpec.shared_examples "it is historical through Timelines::Ephemeral" do
   let(:instance) { build(factory_name) }
 
+  describe "scopes" do
+    let!(:draft_record_one) { create(factory_name, started_at: nil, ended_at: nil) }
+    let!(:draft_record_two) { create(factory_name, started_at: nil, ended_at: 6.days.from_now.end_of_day) }
+    let!(:active_record_one) { create(factory_name, started_at: 10.days.ago.beginning_of_day, ended_at: nil) }
+    let!(:active_record_two) { create(factory_name, started_at: 10.days.ago.beginning_of_day, ended_at: 10.days.from_now.end_of_day) }
+    let!(:active_5_days_ago) { create(factory_name, started_at: 6.days.ago.beginning_of_day, ended_at: 4.days.ago.end_of_day) }
+    let!(:active_5_days_from_now) { create(factory_name, started_at: 4.days.from_now.beginning_of_day, ended_at: 6.days.from_now.end_of_day) }
+    let!(:ended_record_one) { create(factory_name, started_at: 10.days.ago.beginning_of_day, ended_at: 5.days.ago.end_of_day) }
+    let!(:ended_record_two) { create(factory_name, started_at: 10.days.ago.beginning_of_day, ended_at: 1.days.ago.end_of_day) }
+    let(:in_scope_records) { instance.class.all.where(id: [draft_record_one, draft_record_two, active_record_one, active_record_two, active_5_days_ago, active_5_days_from_now, ended_record_one, ended_record_two].map(&:id)) }
+
+    describe "draft" do
+      it "returns records with no starting date, even if they have an end date" do
+        expect(in_scope_records.draft).to match_array([draft_record_one, draft_record_two])
+      end
+    end
+
+    describe "active" do
+      it "returns records that started in the past and have no ending or a future ending" do
+        expect(in_scope_records.active).to match_array([active_record_one, active_record_two])
+      end
+    end
+
+    describe "active_at" do
+      it "returns records that started before the given date and have no ending or an ending in the future" do
+        expect(in_scope_records.active_at(5.days.ago)).to match_array([active_record_one, active_record_two, active_5_days_ago, ended_record_one, ended_record_two])
+        expect(in_scope_records.active_at(5.days.from_now)).to match_array([active_record_one, active_record_two, active_5_days_from_now])
+      end
+    end
+
+    describe "ended" do
+      it "returns records that have an ending date in the past" do
+        expect(in_scope_records.ended).to match_array([ended_record_one, ended_record_two, active_5_days_ago])
+      end
+    end
+
+    describe "deleted" do
+      it "returns records that have an ending date in the past" do
+        expect(in_scope_records.deleted).to match_array([ended_record_one, ended_record_two, active_5_days_ago])
+      end
+    end
+
+    describe "not_deleted" do
+      it "returns records that have no ending date or an ending date in the future" do
+        expect(in_scope_records.not_deleted).to match_array([draft_record_one, draft_record_two, active_record_one, active_record_two, active_5_days_from_now])
+      end
+    end
+
+    describe "with_deleted" do
+      it "clears the 'ended_at' scope" do
+        expect(in_scope_records.active).to match_array([active_record_one, active_record_two])
+        expect(in_scope_records.active.with_deleted).to match_array([active_record_one, active_record_two, active_5_days_ago, ended_record_one, ended_record_two])
+      end
+    end
+  end
+
   describe "active?" do
     it "returns true if the record started in the past and has no ending" do
       instance.started_at = 1.day.ago
