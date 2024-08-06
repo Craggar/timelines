@@ -1,5 +1,10 @@
 # Timelines
 
+## 0.4.0 (2024-08-06)
+### Changed
+- Updated the `active_at`, `ended`, and `not_deleted` scopes to return live records that may have future end dates.
+- Calling `end!` on a record with a future end date will now set the end date to the current date.
+
 ## 0.3.1 (2024-06-17)
 ### Changed
 - Modified the `destroy` method to run callbacks, remove associations, etc.
