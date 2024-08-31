@@ -1,5 +1,9 @@
 # Timelines
 
+## 1.0.1 (2024-08-31)
+### Changed
+- Added an optional `on:` parameter when configuring `tracks_timelines_event`. Defaults to `:before_save`
+
 ## 1.0.0 (2024-08-31)
 ### Changed
 - Added `Timelines::TracksEvents` concern to allow for defining how events are created/logged by a class that has a Timeline.
