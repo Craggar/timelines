@@ -7,6 +7,9 @@ group :test do
   # ActiveSupport for testing
   gem "activesupport"
 
+  # ActiveJob for testing
+  gem "activejob"
+
   # Use DatabaseCleaner for specs
   gem "database_cleaner"
 

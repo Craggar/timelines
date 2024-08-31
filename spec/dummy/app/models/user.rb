@@ -4,6 +4,8 @@ class User < ApplicationRecord
   include Timelines::Ephemeral
   attribute :started_at, :datetime, default: -> { Time.current }
 
+  tracks_timelines_event :user_created, resource: ->(instance) { instance }, actor: ->(instance) { instance }, event: ->(instance) { "user::created" }, conditions: ->(instance) { true }
+
   def email
     @email ||= Faker::Internet.email
   end
