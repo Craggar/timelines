@@ -1,4 +1,5 @@
 require "simplecov"
+require "active_job"
 
 SimpleCov.start "rails" do
   add_filter "spec/"

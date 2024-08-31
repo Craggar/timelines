@@ -1,5 +1,10 @@
 # Timelines
 
+## 1.0.0 (2024-08-31)
+### Changed
+- Added `Timelines::TracksEvents` concern to allow for defining how events are created/logged by a class that has a Timeline.
+- Added `Timelines::EventLogger` job to log events in the background.
+
 ## 0.4.0 (2024-08-06)
 ### Changed
 - Updated the `active_at`, `ended`, and `not_deleted` scopes to return live records that may have future end dates.

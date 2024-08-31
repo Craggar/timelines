@@ -6,6 +6,7 @@ module Timelines
 
     included do
       include ::Timelines::HasEvents
+      include ::Timelines::TracksEvents
 
       def audit_trail(reverse: false)
         ::Timelines::AuditTrail.new(resource: self, reverse: reverse)
