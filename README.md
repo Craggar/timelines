@@ -47,6 +47,18 @@ And the following Class methods:
 .self.destroy_all
 ```
 
+Enables defining conditions for automated logging of events for a record's many lifecycle events, which are logged through an ActiveJob adapter.
+
+The parameters are 4 procs that define the resource, actor, event, and conditions for logging the event. Conditions can be used to ensure an event only fires on a new record, or on a record that has been updated in a specific way/meets certain criteria to be eligible to log the event.
+```ruby
+include Timelines::TracksEvents
+tracks_timelines_event :create_event,
+  resource: ->(instance) { instance },
+  actor: ->(instance) { instance.created_by },
+  event: ->(instance) { "instance::create" },
+  conditions: ->(instance) { instance.new_record? }
+```
+
 ## Installation
 Add this line to your application's Gemfile:
 
