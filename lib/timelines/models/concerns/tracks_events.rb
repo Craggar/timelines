@@ -5,7 +5,7 @@ module Timelines
     extend ActiveSupport::Concern
 
     included do
-      def self.tracks_timelines_event(name, actor:, resource:, event:, conditions:)
+      def self.tracks_timelines_event(name, actor:, resource:, event:, conditions:, on: :before_save)
         method_name = "track_#{name}_event"
         define_method method_name.to_sym do
           event_should_be_logged = conditions.call(self)
@@ -19,7 +19,7 @@ module Timelines
           ::Timelines::EventLogger.perform_later(event_actor.class.name, event_actor.id, event_resource.class.name, event_resource.id, event_summary, Time.current)
         end
 
-        before_save method_name.to_sym
+        send(on, method_name.to_sym)
       end
     end
   end
