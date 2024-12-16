@@ -1,5 +1,9 @@
 # Timelines
 
+## 1.0.2 (2024-12-16)
+### Changed
+- Loosened the Rails requirement from `~> 7.0.1` to `>= 7.0.1`
+
 ## 1.0.1 (2024-08-31)
 ### Changed
 - Added an optional `on:` parameter when configuring `tracks_timelines_event`. Defaults to `:before_save`

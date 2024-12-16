@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    timelines (1.0.1)
+    timelines (1.0.2)
       rails (>= 7.1.0)
 
 GEM
