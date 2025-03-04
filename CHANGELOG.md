@@ -1,5 +1,9 @@
 # Timelines
 
+## 1.0.3 (2025-03-04)
+### Changed
+- Update `uri` dependency to address CVE
+
 ## 1.0.2 (2024-12-16)
 ### Changed
 - Loosened the Rails requirement from `~> 7.0.1` to `>= 7.0.1`
