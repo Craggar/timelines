@@ -1,5 +1,9 @@
 # Timelines
 
+## 1.0.4 (2025-08-14)
+### Changed
+- Version bump for gem dependency updates.
+
 ## 1.0.3 (2025-03-04)
 ### Changed
 - Update `uri` dependency to address CVE
