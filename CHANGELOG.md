@@ -1,5 +1,8 @@
 # Timelines
 
+## 1.0.6 (2026-11-13)
+- Version bump for gem dependency updates.
+
 ## 1.0.5 (2026-08-03)
 - Version bump for gem dependency updates.
 
